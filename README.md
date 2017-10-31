@@ -8,15 +8,22 @@ A repo dedicated to learning machine learning in both Python and R.
 **Python**  
 
 ```Python
-import numpy as np                # matematical tools
-import matplotlib.pyplot as plot  # plotting tools 
-import pandas as pd               # import and manage datasets
+import numpy as np                # Matematical tools
+import matplotlib.pyplot as plot  # Plotting tools 
+import pandas as pd               # Import and manage datasets
 ```
 
 The keyword `as` lets us use custom shortcut names for out packages.
 
-**R**
-R has most of these already built in, but there will be some packages in the future that we're going to need
+**R**  
+```R
+# Quotes required. This is only done once per machine, and is usually done in the console rather than the R script.
+install.packages('packagename') 
+
+# This calls the package being used and imports all the functions for that package.
+library(packagename) 
+```
+R has most of these already built in, but there will be some packages in the future that we're going to need. This is how we're going to install everything.
 
 ### Running code in the console
 This is the same for both R and Python. **Highlight** (or the entire file) the selected portion of 
