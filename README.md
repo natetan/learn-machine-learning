@@ -2,7 +2,7 @@
 A repo dedicated to learning machine learning in both Python and R.
 
 ## Contents
-- [Importing the libraries](importingthelibraries)
+- [Importing the libraries](#importing the libraries)
 
 ### Importing the libraries
 **Python**  
