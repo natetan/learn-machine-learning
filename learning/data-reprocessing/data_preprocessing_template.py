@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 """
-Created on Tue Oct 31 16:07:17 2017
-
-@author: yulong
-
+Yulong Tan
+10.31.17
 """
 
 # Importing the libraries
 
 import numpy as np
+import matplotlib.pyplot as plot
+import pandas as pd
 
 
