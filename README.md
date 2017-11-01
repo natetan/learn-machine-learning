@@ -2,7 +2,17 @@
 A repo dedicated to learning machine learning in both Python and R.
 
 ## Contents
+- [Setup](#setup)
 - [Importing the libraries](#importing-the-libraries)
+
+### Setup
+- Python
+  - [Python Language](https://www.python.org/downloads/)
+  - [Anaconda-Navigator (Spyder is the IDE)](https://www.anaconda.com/download/)
+- R
+  - [R programming language](https://cran.r-project.org/mirrors.html)
+  - [R Studio](https://www.rstudio.com/products/rstudio/download/)
+
 
 ### Importing the libraries
 **Python**  
