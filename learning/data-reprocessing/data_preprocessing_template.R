@@ -16,6 +16,16 @@ ReplaceColWithAverage <- function(col) {
   return(new.col)
 }
 
+FactorizeCol <- function(col, givenLevels, givenLabels) {
+  new.col <- factor(col, levels = givenLevels, labels = givenLabels)
+  return(new.col)
+}
+
 # $ symbol grabs the column by name
 dataset$Age <- ReplaceColWithAverage(dataset$Age)
 dataset$Salary <- ReplaceColWithAverage(dataset$Salary)
+
+# Encoding categorical (nominal) data
+dataset$Country <- FactorizeCol(dataset$Country, c('France', 'Spain', 'Germany'), c(1, 2, 3))
+dataset$Purchased <- FactorizeCol(dataset$Purchased, c('No', 'Yes'), c(0, 1))
+

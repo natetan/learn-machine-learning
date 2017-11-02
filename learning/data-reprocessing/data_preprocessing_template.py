@@ -26,3 +26,17 @@ from sklearn.preprocessing import Imputer
 imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0) # looking for values that are NaN and replacing them with the mean
 imputer = imputer.fit(x[:, 1:3]) # fixing all rows of cols 1 and 2
 x[:, 1:3] = imputer.transform(x[:, 1:3]) # set the x data to the fixed table
+
+# Encoding categorical (nominal) data
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+le_x = LabelEncoder()
+x[:, 0] = le_x.fit_transform(x[:, 0])
+
+le_y = LabelEncoder()
+y = le_x.fit_transform(y)
+
+ohe = OneHotEncoder(categorical_features = [0])
+x = ohe.fit_transform(x).toarray()
+
+
