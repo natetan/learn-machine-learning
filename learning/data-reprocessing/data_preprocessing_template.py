@@ -39,4 +39,25 @@ y = le_x.fit_transform(y)
 ohe = OneHotEncoder(categorical_features = [0])
 x = ohe.fit_transform(x).toarray()
 
+# Splitting the dataset into a Training set and a Testing set
+from sklearn.cross_validation import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 0)
+
+# Feature Scaling
+from sklearn.preprocessing import StandardScaler
+scale_x = StandardScaler()
+## Recompute because we want it scaled
+x_train = scale_x.fit_transform(x_train)
+x_test = scale_x.fit_transform(x_test)
+
+
+
+
+
+
+
+
+
+
+
 

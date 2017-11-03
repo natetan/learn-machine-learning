@@ -29,3 +29,22 @@ dataset$Salary <- ReplaceColWithAverage(dataset$Salary)
 dataset$Country <- FactorizeCol(dataset$Country, c('France', 'Spain', 'Germany'), c(1, 2, 3))
 dataset$Purchased <- FactorizeCol(dataset$Purchased, c('No', 'Yes'), c(0, 1))
 
+# Splitting the training set and the testing set
+# Writing this in the console ensures that you don't write it here
+# You install this once per machine
+# install.packages('caTools') 
+
+library(caTools)
+set.seed(123)
+
+# This uses the train set as the ratio (Python uses the test one, so we did 0.2)
+split <- sample.split(dataset$Purchased, SplitRatio = 0.8)
+training.set <- subset(dataset, split == TRUE)
+test.set <- subset(dataset, split == FALSE)
+
+# Feature Scaling
+## Need to exclude the 'factors', because they're not numeric.
+## The factors are the categorical data that we transformed earlier
+training.set[, 2:3] <- scale(training.set[, 2:3])
+test.set[, 2:3] <- scale(test.set[, 2:3])
+
