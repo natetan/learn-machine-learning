@@ -1,5 +1,5 @@
 # Learning Machine Learning
-A repo dedicated to learning machine learning in both Python and R.
+A repo dedicated to learning machine learning in both Python and R. This is based on the online course from [Udemy](https://www.udemy.com/machinelearning/)
 
 ## Contents
 - [Setup](#setup)
