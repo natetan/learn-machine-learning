@@ -101,3 +101,32 @@ ReplaceColWithAverage <- function(col) {
 dataset$Age <- ReplaceColWithAverage(dataset$Age)
 dataset$Salary <- ReplaceColWithAverage(dataset$Salary)
 ```
+
+### Encoding Categorical Data
+Machine learning uses algorithms that deal with numbers, so nominal data won't work that well here. We have to encode it.  
+![encode-example](images/encode-categorical-data.png)
+
+**Python**
+```Python
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+le_x = LabelEncoder()
+x[:, 0] = le_x.fit_transform(x[:, 0])
+
+le_y = LabelEncoder()
+y = le_x.fit_transform(y)
+
+ohe = OneHotEncoder(categorical_features = [0])
+x = ohe.fit_transform(x).toarray()
+```
+
+**R**
+```R
+FactorizeCol <- function(col, givenLevels, givenLabels) {
+  new.col <- factor(col, levels = givenLevels, labels = givenLabels)
+  return(new.col)
+}
+
+dataset$Country <- FactorizeCol(dataset$Country, c('France', 'Spain', 'Germany'), c(1, 2, 3))
+dataset$Purchased <- FactorizeCol(dataset$Purchased, c('No', 'Yes'), c(0, 1))
+```
