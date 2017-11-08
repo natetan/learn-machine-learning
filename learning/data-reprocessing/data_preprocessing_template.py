@@ -23,7 +23,8 @@ y = dataset.iloc[:, 3].values # We want all the tows, but only the 3rd column
 
 # Taking care of missing data
 from sklearn.preprocessing import Imputer
-imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0) # looking for values that are NaN and replacing them with the mean
+# looking for values that are NaN and replacing them with the mean
+imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0) 
 imputer = imputer.fit(x[:, 1:3]) # fixing all rows of cols 1 and 2
 x[:, 1:3] = imputer.transform(x[:, 1:3]) # set the x data to the fixed table
 
