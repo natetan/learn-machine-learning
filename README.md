@@ -130,3 +130,45 @@ FactorizeCol <- function(col, givenLevels, givenLabels) {
 dataset$Country <- FactorizeCol(dataset$Country, c('France', 'Spain', 'Germany'), c(1, 2, 3))
 dataset$Purchased <- FactorizeCol(dataset$Purchased, c('No', 'Yes'), c(0, 1))
 ```
+
+### Splitting data into a training set and a testing set
+In order for the machine to learn, we need to train it with data, and test it against some data.  
+  
+**Python**
+```Python
+from sklearn.cross_validation import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 0)
+```
+We're setting the random state just to have the same random results for learning purposes. Test size is typically **20%**.  
+  
+**R**
+```R
+library(caTools)
+set.seed(123) # this is for learning purposes, keeping the results the same
+
+# This uses the train set as the ratio (Python uses the test one, so we did 0.2)
+split <- sample.split(dataset$Purchased, SplitRatio = 0.8)
+training.set <- subset(dataset, split == TRUE)
+test.set <- subset(dataset, split == FALSE)
+```
+
+### Feature Scaling
+In machine learning, we need our features of the same scale. As it stands, age ranges in the 0-100 scale, and salary
+ranges from 0-100000. The categorical data that was converted to ordinal data do not need to be converted.  
+  
+**Python**
+```Python
+from sklearn.preprocessing import StandardScaler
+scale_x = StandardScaler()
+## Recompute because we want it scaled
+x_train = scale_x.fit_transform(x_train)
+x_test = scale_x.fit_transform(x_test)
+```
+
+**R**
+```R
+## Need to exclude the 'factors', because they're not numeric.
+## The factors are the categorical data that we transformed earlier
+training.set[, 2:3] <- scale(training.set[, 2:3])
+test.set[, 2:3] <- scale(test.set[, 2:3])
+```
