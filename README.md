@@ -220,7 +220,7 @@ test_set = subset(dataset, split == FALSE)
 # test_set = scale(test_set)
 ```
 
-### Fitting a Simple Linear Regression to the Training Set and Predicting
+### Simple Linear Regression
 **Python**
 ```Python
 # Fitting a Simple Linear Regression to the training set
