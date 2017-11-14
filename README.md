@@ -172,3 +172,50 @@ x_test = scale_x.fit_transform(x_test)
 training.set[, 2:3] <- scale(training.set[, 2:3])
 test.set[, 2:3] <- scale(test.set[, 2:3])
 ```
+
+### The Template We Need
+So far, we've created a template for us to work in. However, not all of the things we did were completely necessary,
+so we'll just include the basics of what we need.  
+  
+**Python**
+```Python
+# Importing the libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Importing the dataset
+dataset = pd.read_csv('Data.csv')
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 3].values
+
+# Splitting the dataset into the Training set and Test set
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# Feature Scaling
+"""from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
+sc_y = StandardScaler()
+y_train = sc_y.fit_transform(y_train)"""
+```
+
+**R**
+```r
+# Importing the dataset
+dataset = read.csv('Data.csv')
+
+# Splitting the dataset into the Training set and Test set
+# install.packages('caTools')
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$DependentVariable, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
+
+# Feature Scaling
+# training_set = scale(training_set)
+# test_set = scale(test_set)
+```
