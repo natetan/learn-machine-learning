@@ -1,5 +1,5 @@
 # Learning Machine Learning
-A repo dedicated to learning machine learning in both Python and R. This is based on the online course from [Udemy](https://www.udemy.com/machinelearning/)
+A repo dedicated to learning machine learning in both Python and R. This is based on the online course from [Udemy](https://www.udemy.com/machinelearning/). The data for the modules can be found [here](https://www.superdatascience.com/machine-learning/).
 
 ## Contents
 - [Setup](#setup)
@@ -218,4 +218,70 @@ test_set = subset(dataset, split == FALSE)
 # Feature Scaling
 # training_set = scale(training_set)
 # test_set = scale(test_set)
+```
+
+### Fitting a Simple Linear Regression to the Training Set and Predicting
+**Python**
+```Python
+# Fitting a Simple Linear Regression to the training set
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+# Predicting the test set results
+y_prediction = regressor.predict(X_test)
+```
+  
+**R**
+```R
+# Fitting Simple Linear Regression to the Training set
+regressor <- lm(formula = Salary ~ YearsExperience,
+                data = training_set)
+
+# Predicting the test set results
+y_prediction <- predict(regressor, newdata = test_set)
+```
+### Visualization
+**Python**
+```Python
+# Visualizing the training set results
+plot.scatter(X_train, y_train, color = 'red')
+plot.plot(X_train, regressor.predict(X_train), color = 'blue')
+plot.title('Salary vs Experience (Training Set)')
+plot.xlabel('Years of Experience')
+plot.ylabel('Salary')
+plot.show()
+
+# Visualizing the test set results
+plot.scatter(X_test, y_test, color = 'red')
+plot.plot(X_train, regressor.predict(X_train), color = 'blue')
+plot.title('Salary vs Experience (Test Set)')
+plot.xlabel('Years of Experience')
+plot.ylabel('Salary')
+plot.show()
+```
+  
+**R**
+```R
+library(ggplot2)
+
+# Visualizing the training set results
+ggplot() + 
+  geom_point(mapping = aes(x = training_set$YearsExperience, y = training_set$Salary),
+             color = 'red') +
+  geom_line(mapping = aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+            color = 'blue') +
+  ggtitle('Salary vs Experience (Training Set)') +
+  xlab('Years of Experience') +
+  ylab('Salary')
+
+# Visualizing the test set results
+ggplot() + 
+  geom_point(mapping = aes(x = test_set$YearsExperience, y = test_set$Salary),
+             color = 'red') +
+  geom_line(mapping = aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+            color = 'blue') +
+  ggtitle('Salary vs Experience (Test Set)') +
+  xlab('Years of Experience') +
+  ylab('Salary')
 ```
