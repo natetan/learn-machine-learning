@@ -285,3 +285,10 @@ ggplot() +
   xlab('Years of Experience') +
   ylab('Salary')
 ```
+
+### Multiple Linear Regression Intuition
+There are many variables to take into consideration when trying to make a prediction. Soon enough, we'll have to be dealing
+with nominal data. *Specifically*, categorical variables in regression variables need to be turned into **Dummy Variables**.
+We learned how to do that above, but we can't use more than one dummy variable because we're duplicating it. This is called
+**multicollinearity**. The model won't be able to distinguish between dummy 1 and dummy 2. Basically, you **can't** have 
+the *constant* and both *dummy variables* at once. When building a model, **always exclude one dummy variable**.
