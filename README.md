@@ -296,29 +296,29 @@ the *constant* and both *dummy variables* at once. When building a model, **alwa
 ### Building a Model
 5 Methods of building models (**Stepwise Regression refers to steps 2 - 4**)
   1. All-in
-    - Throw in all your variables
-    - Typically a bad idea
-    - *Needs prior knowledge*
-    - Preparing for Backward Elimination
+     - Throw in all your variables
+     - Typically a bad idea
+     - *Needs prior knowledge*
+     - Preparing for Backward Elimination
   2. Backward Elimination (fastest one)
-    - **Step 1:** Select a significance level to stay in the model (e.g. SL = 0.05)
-    - **Step 2:** Fit the full model with all possible predictors
-    - **Step 3:** Consider the predictor with the *highest* P-value. If P > SL, go to **Step 4**, else finish
-    - **Step 4:** Remove the predictor
-    - **Step 5:** Fit model without this variable, then go back to level 3
+     - **Step 1:** Select a significance level to stay in the model (e.g. SL = 0.05)
+     - **Step 2:** Fit the full model with all possible predictors
+     - **Step 3:** Consider the predictor with the *highest* P-value. If P > SL, go to **Step 4**, else finish
+     - **Step 4:** Remove the predictor
+     - **Step 5:** Fit model without this variable, then go back to level 3
   3. Forward Selection
-    - **Step 1:** Select a significance level to stay in the model (e.g. SL = 0.05)
-    - **Step 2:** Fit all simple regression models y ~ xn (select the one with the lowest p-value)
-    - **Step 3:** Keep this variable and fit all possible models with one extra predictor added to the one(s) you already have
-    - **Step 4:** Consider the predictor with the lowest P-value. If P < SL, go to **Step 3**, else finish (keep the previous model) 
+     - **Step 1:** Select a significance level to stay in the model (e.g. SL = 0.05)
+     - **Step 2:** Fit all simple regression models y ~ xn (select the one with the lowest p-value)
+     - **Step 3:** Keep this variable and fit all possible models with one extra predictor added to the one(s) you already have
+     - **Step 4:** Consider the predictor with the lowest P-value. If P < SL, go to **Step 3**, else finish (keep the previous model) 
   4. Bidirectional Elimination
-    - **Step 1:** Select a significance level to enter and to stay in the model (e.g.: SLENTER = 0.05, SLSTAY = 0.05)
-    - **Step 2:** Perform the next step of Forward Selection (new variables must have: P < SLENTER to enter)
-    - **Step 3:** Perform *ALL* steps of Backward Elimination (old variables must have P < SLSTAY to stay, then go back to **step 2**
-    - **Step 4:** No new variables can enter and no old variables can exit
+     - **Step 1:** Select a significance level to enter and to stay in the model (e.g.: SLENTER = 0.05, SLSTAY = 0.05)
+     - **Step 2:** Perform the next step of Forward Selection (new variables must have: P < SLENTER to enter)
+     - **Step 3:** Perform *ALL* steps of Backward Elimination (old variables must have P < SLSTAY to stay, then go back to **step 2**
+     - **Step 4:** No new variables can enter and no old variables can exit
   5. Score Comparison (most intensive one, and resource consuming)
-    - **Step 1:** Select a criterion of goodness of fit (e.g. Akaike criterion)
-    - **Step 2:** Construct all possible regression models: 2^n - 1 total combinations (10 cols means 1023 models)
-    - **Step 3:** Select the one with the best criterion
+     - **Step 1:** Select a criterion of goodness of fit (e.g. Akaike criterion)
+     - **Step 2:** Construct all possible regression models: 2^n - 1 total combinations (10 cols means 1023 models)
+     - **Step 3:** Select the one with the best criterion
 
 
