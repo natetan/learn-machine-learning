@@ -44,6 +44,25 @@ import statsmodels.formula.api as sm
 # Append adds parameter 2 (values) to the end of parameter 1 (arr). We want the ones in the front, so we append
 # the X matrix of features to the ones (50 rows, 1 col)
 X = np.append(arr = np.ones((50, 1)).astype(int), values = X, axis = 1)
+# Backward elimination steps 3-5. Significance level is set to 5%. If P values are > 5%, we remove that predictor
+# and then we fit the model again, then keep repeating those steps until no independent variables are above that
+# significance level.
 X_optimal = X[:, [0, 1, 2, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 1, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 3, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 3]]
 regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
 regressor_OLS.summary()
