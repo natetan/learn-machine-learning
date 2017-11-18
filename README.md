@@ -321,4 +321,122 @@ the *constant* and both *dummy variables* at once. When building a model, **alwa
      - **Step 2:** Construct all possible regression models: 2^n - 1 total combinations (10 cols means 1023 models)
      - **Step 3:** Select the one with the best criterion
 
+### Multiple Linear Regression (Backward Elimination)
+**Python**
+```Python
+# Importing the libraries
+import numpy as np
+import matplotlib.pyplot as plot
+import pandas as pd
 
+# Importing the dataset
+dataset = pd.read_csv('50_Startups.csv')
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 4].values
+
+# Encoding categorical data
+
+# Encoding the independent variable
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder_X = LabelEncoder()
+X[:, 3] = labelencoder_X.fit_transform(X[:, 3])
+onehotencoder = OneHotEncoder(categorical_features = [3])
+X = onehotencoder.fit_transform(X).toarray()
+
+# Avoiding the Dummy Variable Trap
+X = X[:, 1:]
+
+# Splitting the dataset into the Training set and Test set
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# Fitting Multiple Linear Regression to the training set
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+# Predicting the test set results
+y_prediction = regressor.predict(X_test)
+
+# Building the optimal model using Backward Elimination
+import statsmodels.formula.api as sm
+# Append adds parameter 2 (values) to the end of parameter 1 (arr). We want the ones in the front, so we append
+# the X matrix of features to the ones (50 rows, 1 col)
+X = np.append(arr = np.ones((50, 1)).astype(int), values = X, axis = 1)
+# Backward elimination steps 3-5. Significance level is set to 5%. If P values are > 5%, we remove that predictor
+# and then we fit the model again, then keep repeating those steps until no independent variables are above that
+# significance level.
+X_optimal = X[:, [0, 1, 2, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 1, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 3, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+
+X_optimal = X[:, [0, 3]]
+regressor_OLS = sm.OLS(endog = y, exog = X_optimal).fit()
+regressor_OLS.summary()
+```
+
+Summary gives the OLS Regression Results. It includes many statistical numbers, including p values for the 
+independent variables, which is what we're looking for.  
+  
+**R**
+```R
+# Importing the dataset
+dataset <- read.csv('50_Startups.csv')
+
+# Encoding categorical data
+dataset$State <- factor(dataset$State,
+                        levels = c('New York', 'California', 'Florida'),
+                        labels = c(1, 2, 3))
+
+# Splitting the dataset into the Training set and Test set
+# install.packages('caTools')
+library(caTools)
+set.seed(123)
+split <- sample.split(dataset$Profit, SplitRatio = 0.8)
+training.set <- subset(dataset, split == TRUE)
+test.set <- subset(dataset, split == FALSE)
+
+# Feature Scaling
+# training_set = scale(training_set)
+# test_set = scale(test_set)
+
+# Fitting the Multiple Linear Regression to the training set
+# regressor <- lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State)
+regressor <- lm(formula = Profit ~ .,
+                data = training.set) 
+
+# Predicting the test set results
+y.prediction <- predict(regressor, newdata = test.set)
+
+# Building the optimal model using Backward Elimination
+
+# Function to cut down the redundancy of the summary
+BackwardEliminate <- function(regressor, linear.model) {
+  regressor <- linear.model
+  summary(regressor)
+}
+
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State,
+                data = dataset))
+
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend,
+                data = dataset))
+
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Marketing.Spend,
+                data = dataset))
+
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend,
+                data = dataset))
+```
