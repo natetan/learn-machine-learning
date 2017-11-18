@@ -32,21 +32,24 @@ regressor <- lm(formula = Profit ~ .,
 y.prediction <- predict(regressor, newdata = test.set)
 
 # Building the optimal model using Backward Elimination
-regressor <- lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State,
-                data = dataset)
-summary(regressor)
 
-regressor <- lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend,
-                data = dataset)
-summary(regressor)
+# Function to cut down the redundancy of the summary
+BackwardEliminate <- function(regressor, linear.model) {
+  regressor <- linear.model
+  summary(regressor)
+}
 
-regressor <- lm(formula = Profit ~ R.D.Spend + Marketing.Spend,
-                data = dataset)
-summary(regressor)
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend + State,
+                data = dataset))
 
-regressor <- lm(formula = Profit ~ R.D.Spend,
-                data = dataset)
-summary(regressor)
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Administration + Marketing.Spend,
+                data = dataset))
+
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Marketing.Spend,
+                data = dataset))
+
+BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend,
+                data = dataset))
 
 
 
