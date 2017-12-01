@@ -440,3 +440,7 @@ BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend + Marketing.Spend,
 BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend,
                 data = dataset))
 ```
+
+### Polynomial Linear Regression Intuition
+This is similar to [Multiple Linear Regression](#multiple-linear-regression-intuition) in that there are multiple variables. The difference is that a variable could have a power to it. Here is an *overview* of the regressions so far:  
+![regression-overview](images/regression-overview.png)
