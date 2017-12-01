@@ -452,6 +452,7 @@ Here is what it would look like in a polynomial regression:
 ![polynomial-regression](images/polynomial-regression.png)
 
 Example use case: Describing/Modeling how epidemics/diseases spread across territory/populations.  
+
 But, **why is it still "linear"? (Polynomial LINEAR Regression)**. Well I am glad you asked. When we say *linear* or 
 *non-linear*, we are **not** talking about the x variables (such as b1x1, b2x1). We're talking about the **coefficients**.
 Your goal when building a regression is to find these coefficients, so further down the track, you can use them to plug in x to predict y. Because of that, this is technically a different **variation** of a Multiple Linear Regression.
