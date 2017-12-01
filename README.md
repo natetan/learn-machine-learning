@@ -447,3 +447,12 @@ This is similar to [Multiple Linear Regression](#multiple-linear-regression-intu
   
 The Simple Linear Regression and Multiple Linear Regression are good if the data is seemingly linear. However, in cases where the data is curved, this kind of regression will not be able to find the [line of best fit](https://mathbits.com/MathBits/TISection/Statistics1/LineFit.htm). As you get to the middle, data will be underneath the line, and as you go higher, data will be above the line. That's a lot of points missed. Here is an illustration:
 ![slr-not-good](images/slr-not-good.png)
+  
+Here is what it would look like in a polynomial regression:
+![polynomial-regression](images/polynomial-regression.png)
+
+Example use case: Describing/Modeling how epidemics/diseases spread across territory/populations.  
+
+But, **why is it still "linear"? (Polynomial LINEAR Regression)**. Well I am glad you asked. When we say *linear* or 
+*non-linear*, we are **not** talking about the x variables (such as b1x1, b2x1). We're talking about the **coefficients**.
+Your goal when building a regression is to find these coefficients, so further down the track, you can use them to plug in x to predict y. Because of that, this is technically a different **variation** of a Multiple Linear Regression.
