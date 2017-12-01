@@ -447,3 +447,6 @@ This is similar to [Multiple Linear Regression](#multiple-linear-regression-intu
   
 The Simple Linear Regression and Multiple Linear Regression are good if the data is seemingly linear. However, in cases where the data is curved, this kind of regression will not be able to find the [line of best fit](https://mathbits.com/MathBits/TISection/Statistics1/LineFit.htm). As you get to the middle, data will be underneath the line, and as you go higher, data will be above the line. That's a lot of points missed. Here is an illustration:
 ![slr-not-good](images/slr-not-good.png)
+  
+Here is what it would look like in a polynomial regression:
+![polynomial-regression](images/polynomial-regression.png)
