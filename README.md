@@ -442,5 +442,8 @@ BackwardEliminate(regressor, lm(formula = Profit ~ R.D.Spend,
 ```
 
 ### Polynomial Linear Regression Intuition
-This is similar to [Multiple Linear Regression](#multiple-linear-regression-intuition) in that there are multiple variables. The difference is that a variable could have a power to it. Here is an *overview* of the regressions so far:  
+This is similar to [Multiple Linear Regression](#multiple-linear-regression-intuition) in that there are multiple variables. The difference is that a variable could have a power to it. Let's refresh our minds. Here is an **overview** of the regressions so far:  
 ![regression-overview](images/regression-overview.png)
+  
+The Simple Linear Regression and Multiple Linear Regression are good if the data is seemingly linear. However, in cases where the data is curved, this kind of regression will not be able to find the [line of best fit](https://mathbits.com/MathBits/TISection/Statistics1/LineFit.htm). As you get to the middle, data will be underneath the line, and as you go higher, data will be above the line. That's a lot of points missed. Here is an illustration:
+![slr-not-good](images/slr-not-good.png)
