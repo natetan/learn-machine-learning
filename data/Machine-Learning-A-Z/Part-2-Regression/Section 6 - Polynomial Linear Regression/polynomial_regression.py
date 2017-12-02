@@ -44,9 +44,17 @@ plot.ylabel('Salary')
 plot.show()
 
 # Visualizing the Polynomial Regression
+X_grid = np.arange(min(X), max(X), 0.1)
+X_grid = X_grid.reshape((len(X_grid), 1))
 plot.scatter(X, y, color = 'red')
-plot.plot(X, lin_reg2.predict(X_poly), color = 'blue')
+plot.plot(X_grid, lin_reg2.predict(poly_reg.fit_transform(X_grid)), color = 'blue')
 plot.title('Position Salaries (Polynomial Regression)')
 plot.xlabel('Position Level')
 plot.ylabel('Salary')
 plot.show()
+
+# Predicting a new result with Linear Regression
+lin_reg.predict(6.5)
+
+# Predicting a new result with Polynomial Regression
+lin_reg2.predict(poly_reg.fit_transform(6.5))
